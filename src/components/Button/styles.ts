@@ -6,7 +6,7 @@ export const ButtonComponent = styled.button<{ bgColor: string }>`
   font-size: 1rem;
   text-transform: uppercase;
   padding: 0.5rem 1rem;
-  width: 6.5rem;
+  width: 6.2rem;
   border: 0.2rem solid transparent;
   border-radius: 0.25rem;
   outline-color: #80ed99;

@@ -70,10 +70,6 @@ export const Amount = styled.span`
   font-size: 2.5rem;
   border-inline: 0.1rem solid #202040;
   padding: 0 2rem;
-
-  @media (min-width: 400px) {
-    padding: 0 4rem;
-  }
 `;
 
 export const IncreaseButton = styled.button`
