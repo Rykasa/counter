@@ -4,7 +4,7 @@ import { CounterType, State } from '../../../types';
 const initialState: State = {
   counters: [] as CounterType[],
   isModalOpen: false,
-  amount: 0,
+  total: 0,
 };
 
 let tempCounter: CounterType[];

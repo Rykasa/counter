@@ -7,5 +7,5 @@ export interface CounterType {
 export interface State {
   counters: CounterType[];
   isModalOpen: boolean;
-  amount: number;
+  total: number;
 }
