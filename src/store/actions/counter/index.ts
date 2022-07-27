@@ -1,13 +1,11 @@
-import { Dispatch } from 'redux';
-import { ActionType, Action } from '../../types';
+import { ActionType } from '../../types';
 import { CounterType } from '../../../types';
 
-export function openModal() {
-  return (dispatch: Dispatch<Action>) => {
-    dispatch({
-      type: ActionType.OPEN_MODAL,
-      payload: '',
-    });
+export function openModal(): {
+  type: string;
+} {
+  return {
+    type: ActionType.OPEN_MODAL,
   };
 }
 export function closeModal(): {
