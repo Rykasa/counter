@@ -13,12 +13,6 @@ export const Container = styled.div`
   }
 `;
 
-//202040
-//80ED99
-//57CC99
-//C7F9CC
-//38A3A5
-
 export const Header = styled.header`
   display: flex;
   justify-content: center;
@@ -27,6 +21,7 @@ export const Header = styled.header`
 
 export const Title = styled.a`
   font-size: 1.25rem;
+  text-align: center;
   cursor: pointer;
   transition: color 0.3s ease-out;
 

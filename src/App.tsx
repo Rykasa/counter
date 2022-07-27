@@ -31,8 +31,3 @@ export function App() {
     </C.Container>
   );
 }
-//202040
-//80ED99
-//57CC99
-//C7F9CC
-//38A3A5

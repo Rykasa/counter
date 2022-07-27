@@ -5,7 +5,7 @@ export function Counter() {
   return (
     <C.Container>
       <C.Header>
-        <C.Title>Times I drank coffee</C.Title>
+        <C.Title>Times I drank coffeedrank coffee</C.Title>
       </C.Header>
       <C.CounterWrapper>
         <C.DecreaseButton>
