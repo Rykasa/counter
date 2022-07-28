@@ -1,13 +1,13 @@
-import { useState } from 'react';
 import * as C from './App.styles';
 import { Counter } from './components/Counter';
 import { Modal } from './components/Modal';
+import { useAppStore } from './hooks/useAppStore';
 
 export function App() {
-  const [isModalOpen, setIsModalOpen] = useState(false);
+  const { state } = useAppStore();
 
   return (
-    <C.Container isModalOpen={isModalOpen}>
+    <C.Container isModalOpen={state.isModalOpen}>
       <C.Heading>Keep Track of Your Day</C.Heading>
       <C.Subheading>Count Everything you want</C.Subheading>
       <C.Section>
@@ -26,7 +26,7 @@ export function App() {
             <C.AddCounterButton>New counter</C.AddCounterButton>
           </C.Main>
         </C.SectionCenter>
-        {isModalOpen && <Modal />}
+        {state.isModalOpen && <Modal />}
       </C.Section>
     </C.Container>
   );

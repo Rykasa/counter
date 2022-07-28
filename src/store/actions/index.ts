@@ -1,1 +1,1 @@
-export * from './counter';
+export * as actionCreators from './counter';
