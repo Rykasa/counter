@@ -80,7 +80,11 @@ export const counterReducer = (state: State = initialState, action: Action) => {
     case ActionType.UPDATE_COUNTER:
       tempCounter = state.counters.map((counter: CounterType) => {
         if (counter.id === action.payload.id) {
-          return action.payload;
+          return {
+            ...counter,
+            title: action.payload.title,
+            value: action.payload.value,
+          };
         }
 
         return counter;

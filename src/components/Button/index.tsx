@@ -6,6 +6,10 @@ interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
   bgColor: string;
 }
 
-export function Button({ title, bgColor }: ButtonProps) {
-  return <ButtonComponent bgColor={bgColor}>{title}</ButtonComponent>;
+export function Button({ title, bgColor, ...props }: ButtonProps) {
+  return (
+    <ButtonComponent bgColor={bgColor} {...props}>
+      {title}
+    </ButtonComponent>
+  );
 }

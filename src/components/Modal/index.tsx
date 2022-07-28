@@ -1,4 +1,4 @@
-import { FormEvent, useEffect, useState } from 'react';
+import { FormEvent, useCallback, useEffect, useState } from 'react';
 import { bindActionCreators } from 'redux';
 import { v4 as uuidv4 } from 'uuid';
 
@@ -21,32 +21,60 @@ export function Modal({ counter }: ModalProps) {
   const [value, setValue] = useState('');
   const { state, dispatch } = useAppStore();
 
-  const { closeModal, createCounter } = bindActionCreators(actionCreators, dispatch);
+  const { closeModal, createCounter, deleteCounter, resetAmount, updateCounter } =
+    bindActionCreators(actionCreators, dispatch);
 
   function handleSubmit(e: FormEvent) {
     e.preventDefault();
 
-    if (title.trim().length === 0 || value.trim().length === 0) {
+    if (title.trim().length === 0) {
       setError(true);
       return;
     }
 
-    createCounter({ id: uuidv4(), title, value: parseInt(value) });
-    closeModal();
-    setError(false);
+    if (!isEditing) {
+      createCounter({ id: uuidv4(), title, value: value ? parseInt(value) : 0 });
+      closeModal();
+      setError(false);
+    }
   }
 
-  function handleCloseModal() {
+  function handleDeleteCounter() {
+    if (counter) {
+      deleteCounter(counter.id);
+      handleCloseModal();
+    }
+  }
+
+  function handleResetCounter() {
+    if (counter) {
+      resetAmount(counter.id);
+      setValue('0');
+    }
+  }
+
+  function handleUpdateCounter() {
+    if (counter) {
+      updateCounter({ id: counter.id, title, value: parseInt(value) });
+      handleCloseModal();
+    }
+  }
+
+  const handleCloseModal = useCallback(() => {
     closeModal();
     setError(false);
-  }
+  }, [closeModal]);
 
   useEffect(() => {
     if (counter) {
       setIsEditing(true);
 
       setTitle(counter.title);
-      setValue(counter.value.toString());
+      if (counter.value) {
+        setValue(counter.value.toString());
+      }
+    } else {
+      setIsEditing(false);
     }
   }, [counter]);
 
@@ -58,7 +86,7 @@ export function Modal({ counter }: ModalProps) {
     window.addEventListener('keyup', handleKeyUp);
 
     return () => window.removeEventListener('keyup', handleKeyUp);
-  }, []);
+  }, [handleCloseModal]);
 
   return (
     <C.Modal aria-label='modal' aria-hidden={!state.isModalOpen}>
@@ -67,7 +95,7 @@ export function Modal({ counter }: ModalProps) {
           <C.CloseButton type='button' data-testid='close' onClick={handleCloseModal}>
             <X />
           </C.CloseButton>
-          {error && <span>Invalid fields</span>}
+          {error && <C.Error>Invalid fields</C.Error>}
           <C.Label htmlFor='title' aria-label='title'>
             Title
           </C.Label>
@@ -91,8 +119,24 @@ export function Modal({ counter }: ModalProps) {
           <C.ButtonsWrapper>
             {isEditing ? (
               <>
-                <Button type='button' title='Delete' bgColor='#C52b2b' />
-                <Button type='button' title='Reset' bgColor='#38A3A5' />
+                <Button
+                  type='button'
+                  title='Delete'
+                  bgColor='#C52b2b'
+                  onClick={handleDeleteCounter}
+                />
+                <Button
+                  type='button'
+                  title='Reset'
+                  bgColor='#38A3A5'
+                  onClick={handleResetCounter}
+                />
+                <Button
+                  type='button'
+                  title='Update'
+                  bgColor='#57CC99'
+                  onClick={handleUpdateCounter}
+                />
               </>
             ) : (
               <Button type='submit' title='Create' bgColor='#38A3A5' />
@@ -103,3 +147,8 @@ export function Modal({ counter }: ModalProps) {
     </C.Modal>
   );
 }
+//202040
+//80ED99
+//57CC99
+//C7F9CC
+//38A3A5

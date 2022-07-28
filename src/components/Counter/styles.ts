@@ -19,9 +19,12 @@ export const Header = styled.header`
   margin-bottom: 1rem;
 `;
 
-export const Title = styled.a`
+export const Title = styled.button`
   font-size: 1.25rem;
   text-align: center;
+  background: none;
+  color: #e9e9e9;
+  border: none;
   cursor: pointer;
   transition: color 0.3s ease-out;
 

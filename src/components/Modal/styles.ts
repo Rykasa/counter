@@ -23,6 +23,13 @@ export const Form = styled.form`
   position: relative;
 `;
 
+export const Error = styled.span`
+  text-align: center;
+  color: #c52b2b;
+  display: block;
+  text-transform: uppercase;
+`;
+
 export const Label = styled.label`
   display: block;
   font-size: 1.5rem;
@@ -51,8 +58,10 @@ export const Input = styled.input`
 export const ButtonsWrapper = styled.div`
   display: flex;
   align-items: center;
-  justify-content: space-between;
+  justify-content: center;
   margin-top: 1rem;
+  flex-wrap: wrap;
+  gap: 0.5rem;
 `;
 
 export const CloseButton = styled.button`
