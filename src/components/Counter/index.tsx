@@ -1,7 +1,12 @@
 import * as C from './styles';
 import { Plus, Minus } from 'phosphor-react';
+import { CounterType } from '../../types';
 
-export function Counter() {
+interface CounterProps {
+  getSingleCounter: (counter: CounterType) => void;
+}
+
+export function Counter({ getSingleCounter }: CounterProps) {
   return (
     <C.Container>
       <C.Header>

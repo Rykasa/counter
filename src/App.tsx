@@ -1,10 +1,17 @@
+import { useState } from 'react';
 import * as C from './App.styles';
 import { Counter } from './components/Counter';
 import { Modal } from './components/Modal';
 import { useAppStore } from './hooks/useAppStore';
+import { CounterType } from './types';
 
 export function App() {
   const { state } = useAppStore();
+  const [specificCounter, setSpecificCounter] = useState<CounterType>({} as CounterType);
+
+  function getSingleCounter(counter: CounterType) {
+    setSpecificCounter(counter);
+  }
 
   return (
     <C.Container isModalOpen={state.isModalOpen}>
@@ -18,15 +25,12 @@ export function App() {
           </C.SectionHeader>
           <C.Main>
             <C.CounterContainer>
-              <Counter />
-              <Counter />
-              <Counter />
-              <Counter />
+              <Counter getSingleCounter={getSingleCounter} />
             </C.CounterContainer>
             <C.AddCounterButton>New counter</C.AddCounterButton>
           </C.Main>
         </C.SectionCenter>
-        {state.isModalOpen && <Modal />}
+        {state.isModalOpen && <Modal counter={specificCounter} />}
       </C.Section>
     </C.Container>
   );

@@ -48,7 +48,7 @@ export function Modal({ counter }: ModalProps) {
       setTitle(counter.title);
       setValue(counter.value.toString());
     }
-  }, []);
+  }, [counter]);
 
   useEffect(() => {
     const handleKeyUp = ({ key }: KeyboardEvent) => {
